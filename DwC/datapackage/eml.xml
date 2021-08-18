@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <eml:eml xmlns:eml="https://eml.ecoinformatics.org/eml-2.2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.2" xmlns:dc="http://purl.org/dc/terms" xml:lang="eng" packageId="tbd" xsi:schemaLocation="https://eml.ecoinformatics.org/eml-2.2.0  https://nis.lternet.edu/schemas/EML/eml-2.2.0/xsd/eml.xsd" scope="system" system="https://pasta.edirepository.org">
   <dataset>
-    <title xml:lang="eng">Harmful Algal Bloom (HAB) data collected from multiple pier stations along the California coast by the Scripps Institution of Oceanography (Darwin Core Archive format)</title>
+    <title>Harmful Algal Bloom (HAB) data collected from multiple pier stations along the California coast by the Scripps Institution of Oceanography (Darwin Core Archive format)</title>
     <creator>
       <individualName>
         <givenName>Melissa</givenName>
@@ -70,7 +70,8 @@
     <pubDate>2021-08-18</pubDate>
     <language>eng</language>
     <abstract>
-      <para>California Harmful Algal Bloom Monitoring and Alert Program (HABMAP) provides updates on current algal blooms and facilitates information exchange among HAB researchers, managers and the general public in California. A major component of this program is regional HAB monitoring. Water samples and net tows are collected once per week to monitor for HAB species and naturally occurring algal toxins. Water quality data including temperature, salinity, and nutrients are also collected. The sampling stations currently represented in this dataset include Cal Poly Pier, Monterey Wharf, Newport Pier, Santa Cruz Wharf, Santa Monica Pier, Scripps Pier, and Stearns Wharf. This data is consolidated and reformatted into Darwin Core Archive (DwC-A) format from the level 1 site-specific datasets hosted on the Southern California Coastal Ocean Observing System (SCCOOS) ERDDAP server (https://erddap.sccoos.org/erddap/tabledap/index.html?page=1).</para>
+      <para>The Harmful Algal Bloom Monitoring and Alert Program (HABMAP) was formed in 2008 and provides updates on current algal blooms and facilitates information exchange among scientists, federal and state managers, and the general public in California. A major component of this program is regional HAB monitoring with support from the Southern California Coastal Ocean Observing System (SCCOOS) and the Central and Northern California Ocean Observing System (CeNCOOS). Water samples and net tows are collected once per week at piers to monitor for HAB species, the neurotoxin domoic acid, and water quality data including temperature, chlorophyll-a, and nutrients.</para>
+      <para>The sampling stations represented in this dataset includes Santa Cruz Wharf, Monterey Wharf, Cal Poly Pier, Stearns Wharf, Santa Monica Pier, Newport Pier, and Scripps Pier. This data is consolidated and reformatted into Darwin Core Archive (DwC-A) format from the level 1 site-specific datasets hosted on the SCCOOS ERDDAP server (https://erddap.sccoos.org/erddap/tabledap/index.html?page=1).</para>
     </abstract>
     <keywordSet>
       <keyword>Samplingevent</keyword>
@@ -103,7 +104,7 @@
             <calendarDate>2005-06-03</calendarDate>
           </beginDate>
           <endDate>
-            <calendarDate>2021-08-09</calendarDate>
+            <calendarDate>2021-07-19</calendarDate>
           </endDate>
         </rangeOfDates>
       </temporalCoverage>
@@ -782,6 +783,20 @@
     <dataTable id="event.csv">
       <entityName>event</entityName>
       <entityDescription>DwC-A Event Table</entityDescription>
+      <physical>
+        <objectName>event.csv</objectName>
+        <size unit="bytes">735719</size>
+        <dataFormat>
+          <externallyDefinedFormat>
+            <formatName>text/csv</formatName>
+          </externallyDefinedFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url function="download">https://raw.githubusercontent.com/BrennieDev/HABsDataPublish/master/DwC/datapackage/event.csv</url>
+          </online>
+        </distribution>
+      </physical>
       <annotation>
         <propertyURI label="is about">http://purl.obolibrary.org/obo/IAO_0000136</propertyURI>
         <valueURI label="Event">http://rs.tdwg.org/dwc/terms/Event</valueURI>
@@ -1031,11 +1046,25 @@
           </annotation>
         </attribute>
       </attributeList>
-      <numberOfRecords>4130</numberOfRecords>
+      <numberOfRecords>4117</numberOfRecords>
     </dataTable>
     <dataTable>
       <entityName>occurrence</entityName>
       <entityDescription>DwC-A Occurrence Table</entityDescription>
+      <physical>
+        <objectName>occurrence.csv</objectName>
+        <size unit="bytes">8403610</size>
+        <dataFormat>
+          <externallyDefinedFormat>
+            <formatName>text/csv</formatName>
+          </externallyDefinedFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url function="download">https://raw.githubusercontent.com/BrennieDev/HABsDataPublish/master/DwC/datapackage/occurrence.csv</url>
+          </online>
+        </distribution>
+      </physical>
       <attributeList>
         <attribute id="occur.csv/id">
           <attributeName>id</attributeName>
@@ -1276,11 +1305,25 @@
           </annotation>
         </attribute>
       </attributeList>
-      <numberOfRecords>30648</numberOfRecords>
+      <numberOfRecords>30581</numberOfRecords>
     </dataTable>
     <dataTable id="extendedmeasurementorfact.csv">
       <entityName>extendedmeasurementorfact</entityName>
       <entityDescription>DwC-A Extended Measurement Or Fact Table</entityDescription>
+      <physical>
+        <objectName>extendedmeasurementorfact.csv</objectName>
+        <size unit="bytes">9335105</size>
+        <dataFormat>
+          <externallyDefinedFormat>
+            <formatName>text/csv</formatName>
+          </externallyDefinedFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url function="download">https://raw.githubusercontent.com/BrennieDev/HABsDataPublish/master/DwC/datapackage/extendedmeasurementorfact.csv</url>
+          </online>
+        </distribution>
+      </physical>
       <annotation>
         <propertyURI label="is about">http://purl.obolibrary.org/obo/IAO_0000136</propertyURI>
         <valueURI label="MeasurementOrFact">http://rs.tdwg.org/dwc/terms/MeasurementOrFact</valueURI>
@@ -1415,11 +1458,25 @@
           </measurementScale>
         </attribute>
       </attributeList>
-      <numberOfRecords>42620</numberOfRecords>
+      <numberOfRecords>42426</numberOfRecords>
     </dataTable>
     <otherEntity>
       <entityName>meta</entityName>
       <entityDescription>The meta file associated with this dataset</entityDescription>
+      <physical>
+        <objectName>meta.xml</objectName>
+        <size unit="bytes">2856</size>
+        <dataFormat>
+          <externallyDefinedFormat>
+            <formatName>text/xml</formatName>
+          </externallyDefinedFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url function="download">https://raw.githubusercontent.com/BrennieDev/HABsDataPublish/master/DwC/datapackage/meta.xml</url>
+          </online>
+        </distribution>
+      </physical>
       <entityType>unknown</entityType>
     </otherEntity>
   </dataset>

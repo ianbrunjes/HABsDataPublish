@@ -357,6 +357,18 @@ gc <- list(
 # Add geographic coverage to EML
 eml_doc$dataset$coverage$geographicCoverage <- gc
 
+## Update title/abstract
+package <- read_csv(here("EML", "package_info.csv"))
+eml_doc$dataset$title <- package$title[[1]]
+
+paragraphs = list()
+for (i in 1:nrow(package)) {
+  para <- package$abstract[[i]]
+  paragraphs[[length(paragraphs)+1]] <- para
+}
+
+eml_doc$dataset$abstract$para <- paragraphs
+
 ## Update temporal coverage and pubDate
 
 # get min and max of data timespan
@@ -391,6 +403,29 @@ taxon_coverage <- taxonomyCleanr::make_taxonomicCoverage(
   write.file = FALSE)
 
 eml_doc$dataset$coverage$taxonomicCoverage <- taxon_coverage
+
+# Add physical distribution URLs for data files
+build_physical <- function(file_name, file_format) {
+  physical <- list()
+
+  physical$objectName <- file_name
+  physical$size <- list(
+    size = file.info(here("DwC", "datapackage", file_name))$size,
+    unit = "bytes"
+  )
+  physical$dataFormat$externallyDefinedFormat$formatName <- file_format
+  physical$distribution$online$url <- list(
+    `function` = "download",
+    url = paste("https://raw.githubusercontent.com/BrennieDev/HABsDataPublish/master/DwC/datapackage/", file_name, sep="")
+  )
+
+  return(physical)
+}
+
+eml_doc$dataset$dataTable[[1]]$physical <- build_physical("event.csv", "text/csv")
+eml_doc$dataset$dataTable[[2]]$physical <- build_physical("occurrence.csv", "text/csv")
+eml_doc$dataset$dataTable[[3]]$physical <- build_physical("extendedmeasurementorfact.csv", "text/csv")
+eml_doc$dataset$otherEntity$physical <- build_physical("meta.xml", "text/xml")
 
 ## Validate eml
 isValid <- eml_validate(eml_doc)
