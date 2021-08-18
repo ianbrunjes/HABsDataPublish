@@ -85,7 +85,7 @@ jobs:
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
           git add --all
-          git commit -am "added generated dataset files"
+          git diff --quiet && git diff --staged --quiet || git commit -am "added generated dataset files"
           git push
 
       # - name: Publish data to EDI
