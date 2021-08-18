@@ -15,7 +15,7 @@ library(EDIutils)
 # DEBUG mode will run script for only a limited set of the data, and skip publishing steps
 DEBUG <- "FALSE"
 
-print(Sys.getenv("TEST"))
+print(Sys.getenv("TESTSECRET"))
 
 #'
 #' Read in spreadsheets that give info about event, measurement and occurrence parameters for this dataset from the downloaded file
