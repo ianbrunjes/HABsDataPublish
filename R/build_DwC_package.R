@@ -70,7 +70,7 @@ for (i in 1:length(datasetIds)) {
     print(paste("Querying ERRDAP for: ", datasetIds[i]))
     siteData = tabledap(siteMeta, fields = siteVars, url = "http://erddap.sccoos.org/erddap/")
   }
-  
+
   #'
   #' Cleanup siteData, correcting types, removing unused columns and replacing NaNs
   #'
@@ -87,20 +87,20 @@ for (i in 1:length(datasetIds)) {
       stringsAsFactors = FALSE
     )
   siteData <- na_if(siteData, "NaN")
-  
+
   #' Create the eventID and occurrenceID in the original file so that information
   #' can be reused for all necessary files down the line.
   siteData$eventID <- NULL
   siteData$eventID <-
     paste(datasetIds[i], siteData$time, sep = "_")
   siteData$id <- siteData$eventID
-  
+
   #' We will also have to add any missing required fields
   siteData$basisOfRecord <- "HumanObservation"
   siteData$geodeticDatum <- "EPSG:4326 WGS84"
   siteData$coordinateUncertaintyInMeters <-
     filter(meta_site, Location_Code == siteIds[i])$coordinateUncertaintyInMeters
-  
+
   #' We will need to create three separate files to comply with the sampling event format.
   #'   ADD EVENT COLUMNS TO EVENT
   #'   ADD MoF COLUMNS to MoF
@@ -108,7 +108,7 @@ for (i in 1:length(datasetIds)) {
   dwc_m <- vector(mode = "list")
   dwc_o <- vector(mode = "list")
   dwc_worms <- vector(mode = "list")
-  
+
   dwc_e <-
     c(dwc_e,
       "id",
@@ -127,13 +127,13 @@ for (i in 1:length(datasetIds)) {
       "basisOfRecord",
       as.vector(meta_occurrence$measurementType)
     )
-  
+
   #'
   #' Create a lookup table of scientificNames from Worms
   #'
   dwc_worms$scientificName <- meta_occurrence$scientificName
   #' Taxonomic lookup using the worrms library
-  
+
   for (j in 1:length(dwc_worms$scientificName)) {
     aphia_id <- worrms::wm_name2id(name = dwc_worms$scientificName[j])
     # Do taxon lookup only if not already done for this id and add to records
@@ -144,10 +144,10 @@ for (i in 1:length(datasetIds)) {
       dwc_o_records <- rbind(dwc_o_records, new_record)
     }
   }
-  
+
   event <- siteData[(as.character(dwc_e))]
   event$id <- event$eventID
-  
+
   event <- rename(
     event,
     decimalLatitude = latitude,
@@ -164,7 +164,7 @@ for (i in 1:length(datasetIds)) {
   #   fileEncoding = "UTF-8",
   #   quote = TRUE
   # )
-  
+
   mof <- siteData[(as.character(dwc_m))]
   mof_long <-
     reshape2::melt(
@@ -178,10 +178,10 @@ for (i in 1:length(datasetIds)) {
                      id = eventID,
                      measurementType = variable,
                      measurementValue = value)
-  
+
   mof_long$measurementID <- NULL
   mof_long$measurementTypeID <- NULL
-  
+
   for (k in 1:length(meta_measurement$measurementType)) {
     for (j in 1:length(mof_long$measurementType)) {
       if (mof_long$measurementType[j] == meta_measurement[k, 1]) {
@@ -192,7 +192,7 @@ for (i in 1:length(datasetIds)) {
       }
     }
   }
-  
+
   # write.csv(
   #   mof_long,
   #   file = (here("DwC/site", datasetIds[i], paste(siteIds[i], "SCCOOS_HABs_mof.csv", sep = "_"))),
@@ -200,7 +200,7 @@ for (i in 1:length(datasetIds)) {
   #   fileEncoding = "UTF-8",
   #   quote = TRUE
   # )
-  
+
   occur <- siteData[(as.character(dwc_o))]
   occur_long <-
     reshape2::melt(
@@ -211,19 +211,19 @@ for (i in 1:length(datasetIds)) {
     )
   occur_long <-
     mutate(occur_long, variable = as.character(variable))
-  
+
   #'  Put critter counts in as a occurrence:organismquantity and occurrence:organismquantitytype
   #'
-  
+
   occur_long <- rename(occur_long,
                        id = eventID,
                        organismName = variable,
                        organismQuantity = value)
-  
+
   occur_long$organismQuantityType <- "cells/L"
   occur_long$occurrenceID <- NULL
   occur_long$scientificName <- NULL
-  
+
   for (k in 1:length(meta_occurrence$measurementType)) {
     for (j in 1:length(occur_long$organismName)) {
       if (occur_long$organismName[j] == meta_occurrence$measurementType[k]) {
@@ -241,7 +241,7 @@ for (i in 1:length(datasetIds)) {
       }
     }
   }
-  
+
   occur_long$scientificName <- as.vector(occur_long$scientificName)
   # write.csv(
   #   occur_long,
@@ -252,7 +252,7 @@ for (i in 1:length(datasetIds)) {
   #   fileEncoding = "UTF-8",
   #   quote = TRUE
   # )
-  
+
   #rowbind events, occurences and MoFs together to make a single event file
   oneEvent <- rbind(oneEvent, event)
   oneOccur <- rbind(oneOccur, occur_long)
@@ -279,13 +279,13 @@ write.csv(
   fileEncoding = "UTF-8",
   quote = TRUE
 )
-write.csv(
-  dwc_o_records,
-  here("DwC", "taxonomic_records.csv"),
-  row.names = FALSE,
-  fileEncoding = "UTF-8",
-  quote = TRUE
-)
+# write.csv(
+#   dwc_o_records,
+#   here("DwC", "taxonomic_records.csv"),
+#   row.names = FALSE,
+#   fileEncoding = "UTF-8",
+#   quote = TRUE
+# )
 
 print("DwC transform completed.")
 
@@ -300,16 +300,16 @@ contacts <- list()
 personnel <- read_csv(here("EML", "personnel.csv"))
 for (i in 1:nrow(personnel)) {
   person <- list()
-  
+
   person$individualName <- list(
     givenName = personnel$givenName[[i]],
     surName = personnel$surName[[i]]
   )
-  
+
   person$organizationName <- personnel$organizationName[[i]]
   person$positionName <- personnel$positionName[[i]]
   person$electronicMailAddress <- personnel$electronicMailAddress[[i]]
-  
+
   if (personnel$role[[i]] == "creator") {
     creators[[length(creators)+1]] <- person
   } else if (personnel$role[[i]] == "contact") {
@@ -332,7 +332,7 @@ for (i in 1:nrow(keyword_set)) {
     keyword = keyword_set$keyword[[i]],
     keywordThesaurus = keyword_set$keywordThesaurus[[i]]
   )
-  
+
   keywords[[length(keywords)+1]] <- keyword
 }
 
@@ -340,7 +340,7 @@ for (i in 1:nrow(keyword_set)) {
 eml_doc$dataset$keywordSet <- keywords
 
 
-## Create updated geographic_coverage 
+## Create updated geographic_coverage
 geo_coverage <- read_csv(here("EML", "geographic_coverage.csv"))
 gc <- list(
   geographicDescription = geo_coverage$geographicDescription[[1]],
