@@ -2,60 +2,6 @@
 <eml:eml xmlns:eml="https://eml.ecoinformatics.org/eml-2.2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.2" xmlns:dc="http://purl.org/dc/terms" xml:lang="eng" packageId="tbd" xsi:schemaLocation="https://eml.ecoinformatics.org/eml-2.2.0  https://nis.lternet.edu/schemas/EML/eml-2.2.0/xsd/eml.xsd" scope="system" system="https://pasta.edirepository.org">
   <dataset>
     <title xml:lang="eng">Harmful Algal Bloom (HAB) data collected from multiple pier stations along the California coast by the Scripps Institution of Oceanography (Darwin Core Archive format)</title>
-    <creator>
-      <individualName>
-        <givenName>Melissa</givenName>
-        <surName>Carter</surName>
-      </individualName>
-      <organizationName>University of California, San Diego</organizationName>
-      <positionName>Co-PI and Programmer Analyst</positionName>
-      <electronicMailAddress>mlcarter@ucsd.edu</electronicMailAddress>
-    </creator>
-    <creator>
-      <individualName>
-        <givenName>Clarissa</givenName>
-        <surName>Anderson</surName>
-      </individualName>
-      <organizationName>University of California, San Diego</organizationName>
-      <positionName>Co-PI and SCCOOS Executive Director</positionName>
-      <electronicMailAddress>clrander@ucsd.edu</electronicMailAddress>
-    </creator>
-    <creator>
-      <individualName>
-        <givenName>James</givenName>
-        <surName>Fumo</surName>
-      </individualName>
-      <organizationName>University of California, San Diego</organizationName>
-      <positionName>Staff Research Associate</positionName>
-      <electronicMailAddress>jfumo@ucsd.edu</electronicMailAddress>
-    </creator>
-    <creator>
-      <individualName>
-        <givenName>John</givenName>
-        <surName>McGowan</surName>
-      </individualName>
-      <organizationName>University of California, San Diego</organizationName>
-      <positionName>PI and Professor Emeritus</positionName>
-      <electronicMailAddress>jmcgowan@ucsd.edu</electronicMailAddress>
-    </creator>
-    <creator>
-      <individualName>
-        <givenName>Kristi</givenName>
-        <surName>Seech</surName>
-      </individualName>
-      <organizationName>University of California, San Diego</organizationName>
-      <positionName>Staff Research Associate</positionName>
-      <electronicMailAddress>kseech@ucsd.edu</electronicMailAddress>
-    </creator>
-    <creator>
-      <individualName>
-        <givenName>Jayme</givenName>
-        <surName>Smith</surName>
-      </individualName>
-      <organizationName>University of California, Los Angeles</organizationName>
-      <positionName>Research Scientist</positionName>
-      <electronicMailAddress>jaymes@sccwrp.org</electronicMailAddress>
-    </creator>
     <metadataProvider>
       <individualName>
         <givenName>Vicky</givenName>
@@ -82,7 +28,7 @@
       <organizationName>U.S. Geological Survey</organizationName>
       <positionName>Biologist</positionName>
       <electronicMailAddress>albenson@usgs.gov</electronicMailAddress>
-      <role>publisher</role>
+      <role>processor</role>
     </associatedParty>
     <associatedParty>
       <individualName>
@@ -94,28 +40,22 @@
       <electronicMailAddress>vrowley@ucsd.edu</electronicMailAddress>
       <role>processor</role>
     </associatedParty>
-    <pubDate>
-      2020-08-05
-  </pubDate>
+    <associatedParty>
+      <individualName>
+        <givenName>Ian</givenName>
+        <surName>Brunjes</surName>
+      </individualName>
+      <organizationName>University of California, Santa Barbara</organizationName>
+      <electronicMailAddress>ianbrunjes@ucsb.edu</electronicMailAddress>
+      <role>processor</role>
+    </associatedParty>
     <language>eng</language>
-    <abstract>
-      <para>California Harmful Algal Bloom Monitoring and Alert Program (HABMAP) provides updates on current algal blooms and facilitates information exchange among HAB researchers, managers and the general public in California. A major component of this program is regional HAB monitoring. Water samples and net tows are collected once per week to monitor for HAB species and naturally occurring algal toxins. Water quality data including temperature, salinity, and nutrients are also collected. The sampling stations currently represented in this dataset include Cal Poly Pier, Monterey Wharf, Newport Pier, Santa Cruz Wharf, Santa Monica Pier, Scripps Pier, and Stearns Wharf. This data is consolidated and reformatted into Darwin Core Archive (DwC-A) format from the level 1 site-specific datasets hosted on the Southern California Coastal Ocean Observing System (SCCOOS) ERDDAP server (https://erddap.sccoos.org/erddap/tabledap/index.html?page=1).</para>
-    </abstract>
-    <keywordSet>
-      <keyword>Samplingevent</keyword>
-      <keywordThesaurus>GBIF Dataset Type Vocabulary: http://rs.gbif.org/vocabulary/gbif/dataset_type.xml</keywordThesaurus>
-    </keywordSet>
     <additionalInfo>
       <para>marine, harvested by OBIS</para>
     </additionalInfo>
     <intellectualRights>
       <para>This work is licensed under a <ulink url="http://creativecommons.org/licenses/by/4.0/legalcode"><citetitle>Creative Commons Attribution (CC-BY) 4.0 License</citetitle></ulink>.</para>
     </intellectualRights>
-    <distribution scope="document">
-      <online>
-        <url function="information">https://www.sciencebase.gov/catalog/item/5f2acf7882cef313eda0f246</url>
-      </online>
-    </distribution>
     <coverage>
       <geographicCoverage>
         <geographicDescription>Coast of California, United States</geographicDescription>
@@ -133,140 +73,6 @@
       </description>
       <maintenanceUpdateFrequency>irregular</maintenanceUpdateFrequency>
     </maintenance>
-    <contact>
-      <individualName>
-        <givenName>Melissa</givenName>
-        <surName>Carter</surName>
-      </individualName>
-      <organizationName>University of California, San Diego</organizationName>
-      <positionName>Co-PI and Programmer Analyst</positionName>
-      <electronicMailAddress>mlcarter@ucsd.edu</electronicMailAddress>
-    </contact>
-    <contact>
-      <individualName>
-        <givenName>Clarissa</givenName>
-        <surName>Anderson</surName>
-      </individualName>
-      <organizationName>University of California, San Diego</organizationName>
-      <positionName>Co-PI and SCCOOS Executive Director</positionName>
-      <electronicMailAddress>clrander@ucsd.edu</electronicMailAddress>
-    </contact>
-    <contact>
-      <individualName>
-        <givenName>James</givenName>
-        <surName>Fumo</surName>
-      </individualName>
-      <organizationName>University of California, San Diego</organizationName>
-      <positionName>Staff Research Associate</positionName>
-      <electronicMailAddress>jfumo@ucsd.edue</electronicMailAddress>
-    </contact>
-    <contact>
-      <individualName>
-        <givenName>John</givenName>
-        <surName>McGowan</surName>
-      </individualName>
-      <organizationName>University of California, San Diego</organizationName>
-      <positionName>PI and Professor Emeritus</positionName>
-      <electronicMailAddress>jmcgowan@ucsd.edu</electronicMailAddress>
-    </contact>
-    <contact>
-      <individualName>
-        <givenName>Kristi</givenName>
-        <surName>Seech</surName>
-      </individualName>
-      <organizationName>University of California, San Diego</organizationName>
-      <positionName>Staff Research Associate</positionName>
-      <electronicMailAddress>kseech@ucsd.edu</electronicMailAddress>
-    </contact>
-    <contact>
-      <individualName>
-        <givenName>Dave</givenName>
-        <surName>Caron</surName>
-      </individualName>
-      <organizationName>University of Southern California</organizationName>
-      <positionName>USC Associates Captain Allan Hancock Chair in Marine Science and Professor of Biological Sciences</positionName>
-      <electronicMailAddress>dcaron@usc.edu</electronicMailAddress>
-    </contact>
-    <contact>
-      <individualName>
-        <givenName>Emily</givenName>
-        <surName>Eggleston</surName>
-      </individualName>
-      <organizationName>University of Southern California</organizationName>
-      <positionName>PhD Student</positionName>
-      <electronicMailAddress>ejeggles@usc.edu</electronicMailAddress>
-    </contact>
-    <contact>
-      <individualName>
-        <givenName>Rebecca</givenName>
-        <surName>Shipe</surName>
-      </individualName>
-      <organizationName>University of California, Los Angeles</organizationName>
-      <positionName>Adjunct Associate Professor</positionName>
-      <electronicMailAddress>rshipe@ucla.edu</electronicMailAddress>
-    </contact>
-    <contact>
-      <individualName>
-        <givenName>Kristen</givenName>
-        <surName>Michaud</surName>
-      </individualName>
-      <organizationName>University of California, Santa Barbara</organizationName>
-      <positionName>Graduate Student</positionName>
-      <electronicMailAddress>kristen.michaud@lifesci.ucsb.edu</electronicMailAddress>
-    </contact>
-    <contact>
-      <individualName>
-        <givenName>Ian</givenName>
-        <surName>Robbins</surName>
-      </individualName>
-      <organizationName>Cal Poly, San Luis Obispo</organizationName>
-      <positionName>Senior Research Scientist</positionName>
-      <electronicMailAddress>irobbins@calpoly.edu</electronicMailAddress>
-    </contact>
-    <contact>
-      <individualName>
-        <givenName>Jason</givenName>
-        <surName>Smith</surName>
-      </individualName>
-      <organizationName>Moss Landing Marine Labs</organizationName>
-      <positionName>Research Faculty</positionName>
-      <electronicMailAddress>jsmith@mlml.calstate.edu</electronicMailAddress>
-    </contact>
-    <contact>
-      <individualName>
-        <givenName>Kendra</givenName>
-        <surName>Negrey</surName>
-      </individualName>
-      <organizationName>University of California, Santa Cruz</organizationName>
-      <electronicMailAddress>khayashi@ucsc.edu</electronicMailAddress>
-    </contact>
-    <contact>
-      <individualName>
-        <givenName>Ryan</givenName>
-        <surName>Walter</surName>
-      </individualName>
-      <organizationName>Cal Poly, San Luis Obispo</organizationName>
-      <positionName>Assistant Professor</positionName>
-      <electronicMailAddress>rkwalter@calpoly.edu</electronicMailAddress>
-    </contact>
-    <contact>
-      <individualName>
-        <givenName>Alexis</givenName>
-        <surName>Pasulka</surName>
-      </individualName>
-      <organizationName>Cal Poly. San Luis Obispo</organizationName>
-      <positionName>Assistant Professor</positionName>
-      <electronicMailAddress>apasulka@calpoly.edu</electronicMailAddress>
-    </contact>
-    <contact>
-      <individualName>
-        <givenName>Mark</givenName>
-        <surName>Brzesinski</surName>
-      </individualName>
-      <organizationName>University of California, Santa Barbara</organizationName>
-      <positionName>Professor</positionName>
-      <electronicMailAddress>mark.brzezinski@lifesci.ucsb.edu</electronicMailAddress>
-    </contact>
     <publisher>
       <organizationName>Southern California Coastal Ocean Observing System (SCCOOS)</organizationName>
       <electronicMailAddress>info@sccoos.org</electronicMailAddress>
@@ -363,6 +169,28 @@
           <annotation>
             <propertyURI label="contains measurements of type">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType</propertyURI>
             <valueURI label="geodeticDatum">http://rs.tdwg.org/dwc/terms/geodeticDatum</valueURI>
+          </annotation>
+        </attribute>
+        <attribute id="event.csv/countryCode">
+          <attributeName>countryCode</attributeName>
+          <attributeLabel>NA</attributeLabel>
+          <attributeDefinition>The standard code for the country in which the Location occurs.</attributeDefinition>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>The standard code for the country in which the Location occurs.</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>Missing value</codeExplanation>
+          </missingValueCode>
+          <annotation>
+            <propertyURI label="contains measurements of type">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType</propertyURI>
+            <valueURI label="countryCode">http://rs.tdwg.org/dwc/terms/countryCode</valueURI>
           </annotation>
         </attribute>
         <attribute id="event.csv/eventRemarks">

@@ -116,6 +116,7 @@ for (i in 1:length(datasetIds)) {
       "eventID",
       "time",
       "geodeticDatum",
+      "countryCode",
       as.vector(meta_event$measurementType))
   dwc_m <-
     c(dwc_m,
@@ -148,6 +149,7 @@ for (i in 1:length(datasetIds)) {
 
   event <- siteData[(as.character(dwc_e))]
   event$id <- event$eventID
+  event$countryCode <- "US"
 
   event <- rename(
     event,
