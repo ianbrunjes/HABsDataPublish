@@ -4,6 +4,7 @@ library(stringr)
 library(readr)
 library(tibble)
 library(lubridate)
+library(EML)
 
 ## Get path to generated EML for dataset
 eml_path <- here("DwC", "datapackage")
