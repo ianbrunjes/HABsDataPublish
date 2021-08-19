@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <eml:eml xmlns:eml="https://eml.ecoinformatics.org/eml-2.2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.2" xmlns:dc="http://purl.org/dc/terms" xml:lang="eng" packageId="tbd" xsi:schemaLocation="https://eml.ecoinformatics.org/eml-2.2.0  https://nis.lternet.edu/schemas/EML/eml-2.2.0/xsd/eml.xsd" scope="system" system="https://pasta.edirepository.org">
   <dataset>
-    <title>Harmful Algal Bloom (HAB) data collected from multiple pier stations along the California coast by the Scripps Institution of Oceanography (Darwin Core Archive format)</title>
+    <title>California Harmful Algal Bloom Monitoring and Alert Program Data (Darwin Core Archive format)</title>
     <creator>
       <individualName>
         <givenName>Melissa</givenName>
@@ -55,7 +55,7 @@
       <organizationName>U.S. Geological Survey</organizationName>
       <positionName>Biologist</positionName>
       <electronicMailAddress>albenson@usgs.gov</electronicMailAddress>
-      <role>publisher</role>
+      <role>processor</role>
     </associatedParty>
     <associatedParty>
       <individualName>
@@ -67,11 +67,20 @@
       <electronicMailAddress>vrowley@ucsd.edu</electronicMailAddress>
       <role>processor</role>
     </associatedParty>
-    <pubDate>2021-08-18</pubDate>
+    <associatedParty>
+      <individualName>
+        <givenName>Ian</givenName>
+        <surName>Brunjes</surName>
+      </individualName>
+      <organizationName>University of California, Santa Barbara</organizationName>
+      <electronicMailAddress>ianbrunjes@ucsb.edu</electronicMailAddress>
+      <role>processor</role>
+    </associatedParty>
+    <pubDate>2021-08-19</pubDate>
     <language>eng</language>
     <abstract>
       <para>The Harmful Algal Bloom Monitoring and Alert Program (HABMAP) was formed in 2008 and provides updates on current algal blooms and facilitates information exchange among scientists, federal and state managers, and the general public in California. A major component of this program is regional HAB monitoring with support from the Southern California Coastal Ocean Observing System (SCCOOS) and the Central and Northern California Ocean Observing System (CeNCOOS). Water samples and net tows are collected once per week at piers to monitor for HAB species, the neurotoxin domoic acid, and water quality data including temperature, chlorophyll-a, and nutrients.</para>
-      <para>The sampling stations represented in this dataset includes Santa Cruz Wharf, Monterey Wharf, Cal Poly Pier, Stearns Wharf, Santa Monica Pier, Newport Pier, and Scripps Pier. This data is consolidated and reformatted into Darwin Core Archive (DwC-A) format from the level 1 site-specific datasets hosted on the SCCOOS ERDDAP server (https://erddap.sccoos.org/erddap/tabledap/index.html?page=1).</para>
+      <para>The sampling stations represented in this dataset include Santa Cruz Wharf, Monterey Wharf, Cal Poly Pier, Stearns Wharf, Santa Monica Pier, Newport Beach Pier, and Scripps Pier. These data are consolidated and reformatted into Darwin Core Archive (DwC-A) format from the level 1 site-specific datasets hosted on the SCCOOS ERDDAP server: (https://erddap.sccoos.org/erddap/tabledap/index.html?page=1).</para>
     </abstract>
     <keywordSet>
       <keyword>Samplingevent</keyword>
@@ -83,11 +92,6 @@
     <intellectualRights>
       <para>This work is licensed under a <ulink url="http://creativecommons.org/licenses/by/4.0/legalcode"><citetitle>Creative Commons Attribution (CC-BY) 4.0 License</citetitle></ulink>.</para>
     </intellectualRights>
-    <distribution scope="document">
-      <online>
-        <url function="information">https://www.sciencebase.gov/catalog/item/5f2acf7882cef313eda0f246</url>
-      </online>
-    </distribution>
     <coverage>
       <geographicCoverage>
         <geographicDescription>Coast of California, United States</geographicDescription>
@@ -705,7 +709,7 @@
     </contact>
     <contact>
       <individualName>
-        <givenName>Jason</givenName>
+        <givenName>G. Jason</givenName>
         <surName>Smith</surName>
       </individualName>
       <organizationName>Moss Landing Marine Labs</organizationName>
@@ -775,6 +779,33 @@
       <positionName>Professor</positionName>
       <electronicMailAddress>libe.washburn@ucsb.edu</electronicMailAddress>
     </contact>
+    <contact>
+      <individualName>
+        <givenName>Jayme</givenName>
+        <surName>Smith</surName>
+      </individualName>
+      <organizationName>Southern California Coastal Water Research Project</organizationName>
+      <positionName>Scientist</positionName>
+      <electronicMailAddress>jaymes@sccwrp.org</electronicMailAddress>
+    </contact>
+    <contact>
+      <individualName>
+        <givenName>Janice</givenName>
+        <surName>Jones</surName>
+      </individualName>
+      <organizationName>University of California, Santa Barbara</organizationName>
+      <positionName>Research Faculty</positionName>
+      <electronicMailAddress>ja_jones@ucsb.edu</electronicMailAddress>
+    </contact>
+    <contact>
+      <individualName>
+        <givenName>Kendra</givenName>
+        <surName>Negrey</surName>
+      </individualName>
+      <organizationName>University of California, Santa Cruz</organizationName>
+      <positionName>Lab Technician</positionName>
+      <electronicMailAddress>khayashi@ucsc.edu</electronicMailAddress>
+    </contact>
     <publisher>
       <organizationName>Southern California Coastal Ocean Observing System (SCCOOS)</organizationName>
       <electronicMailAddress>info@sccoos.org</electronicMailAddress>
@@ -785,7 +816,7 @@
       <entityDescription>DwC-A Event Table</entityDescription>
       <physical>
         <objectName>event.csv</objectName>
-        <size unit="bytes">733942</size>
+        <size unit="bytes">743527</size>
         <dataFormat>
           <externallyDefinedFormat>
             <formatName>text/csv</formatName>
@@ -884,6 +915,28 @@
           <annotation>
             <propertyURI label="contains measurements of type">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType</propertyURI>
             <valueURI label="geodeticDatum">http://rs.tdwg.org/dwc/terms/geodeticDatum</valueURI>
+          </annotation>
+        </attribute>
+        <attribute id="event.csv/countryCode">
+          <attributeName>countryCode</attributeName>
+          <attributeLabel>NA</attributeLabel>
+          <attributeDefinition>The standard code for the country in which the Location occurs.</attributeDefinition>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>The standard code for the country in which the Location occurs.</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+          <missingValueCode>
+            <code>NA</code>
+            <codeExplanation>Missing value</codeExplanation>
+          </missingValueCode>
+          <annotation>
+            <propertyURI label="contains measurements of type">http://ecoinformatics.org/oboe/oboe.1.2/oboe-core.owl#containsMeasurementsOfType</propertyURI>
+            <valueURI label="countryCode">http://rs.tdwg.org/dwc/terms/countryCode</valueURI>
           </annotation>
         </attribute>
         <attribute id="event.csv/eventRemarks">
@@ -1465,7 +1518,7 @@
       <entityDescription>The meta file associated with this dataset</entityDescription>
       <physical>
         <objectName>meta.xml</objectName>
-        <size unit="bytes">2856</size>
+        <size unit="bytes">2928</size>
         <dataFormat>
           <externallyDefinedFormat>
             <formatName>text/xml</formatName>

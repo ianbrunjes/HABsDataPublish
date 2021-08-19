@@ -4,6 +4,7 @@ library(stringr)
 library(readr)
 library(tibble)
 library(lubridate)
+library(EML)
 
 ## Get env vars
 if (Sys.getenv("EDI_ENV") %in% c("staging", "production")){
