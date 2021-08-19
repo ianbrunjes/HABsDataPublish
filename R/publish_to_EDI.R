@@ -26,8 +26,12 @@ eml_doc <- read_eml(here(eml_path, "eml.xml"))
 identifiers <- read_csv(here("EML", "package_identifiers.csv"))
 dataset_id <- identifiers[[paste0("edi_", env)]]
 
-versions <- api_list_data_package_revisions("edi", dataset_id, environment="staging")
-current_version <- versions[length(versions)]
+current_version <- api_list_data_package_revisions(
+  scope = "edi",
+  identifier = dataset_id,
+  environment = env,
+  filter = "newest"
+)
 new_version <- as.numeric(current_version) + 1
 
 new_doi <- paste0("edi.",dataset_id, ".", new_version)
@@ -40,6 +44,7 @@ eml <- EML::write_eml(eml_doc, here("DwC", "datapackage", paste0(new_doi,".xml")
 
 ## Publish to EDI using EDIutils
 tryCatch({
+  print(paste("Updating data with doi:", new_doi))
   EDIutils::api_update_data_package(
     path = eml_path,
     package.id = new_doi,
@@ -49,6 +54,6 @@ tryCatch({
     affiliation = "EDI"
   )
 }, error=function(ex) {
-  print(paste("Update to EDI failed with error:", ex))
+  print(paste("Update to EDI failed with error: ", ex))
 })
 
