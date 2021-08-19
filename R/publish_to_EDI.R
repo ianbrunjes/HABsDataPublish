@@ -9,10 +9,10 @@ library(lubridate)
 eml_path <- here("DwC", "datapackage")
 
 ## Read in EML to update DOI
-eml_doc <- read_eml(eml_path, "eml.xml")
-versions <- read_csv(here("EML", "version_history_EDI.csv"), col_types = "cc")
+eml_doc <- read_eml(here(eml_path, "eml.xml"))
 
-# Get most recent version
+# Get most recent version of published dataset
+versions <- read_csv(here("EML", "version_history_EDI.csv"), col_types = "cc")
 current_doi <- tail(versions, 1)[["doi"]]
 base_doi <- sub(".[^.]+$", "", current_doi)
 current_version <- sub('.*\\.', '', current_doi)
@@ -22,6 +22,8 @@ new_doi <- paste0(base_doi, ".", new_version)
 
 # Update EML with new DOI
 eml_doc$packageId <- new_doi
+
+# Rewrite updated EML file with EDI naming convention
 eml <- EML::write_eml(eml_doc, here("DwC", "datapackage", paste0(new_doi,".xml")))
 
 # Update version history (doi, publish_date)
@@ -35,12 +37,20 @@ write.csv(
 )
 
 
-## Publish to EDI with EDIutils
-EDIutils::api_create_data_package(
-  path = eml_path,
-  package.id = new_doi,
-  environment = "staging",
-  user.id = "ibrunjes",
-  user.pass = "",
-  affiliation = "EDI"
-)
+## Publish to EDI using EDIutils
+usern <- Sys.getenv("EDI_USER")
+passw <- Sys.getenv("EDI_PASS")
+
+tryCatch({
+  EDIutils::api_update_data_package(
+    path = eml_path,
+    package.id = new_doi,
+    environment = "staging",
+    user.id = usern,
+    user.pass = passw,
+    affiliation = "EDI"
+  )
+}, error=function(ex) {
+  print(paste("Update to EDI failed with error:", ex))
+})
+

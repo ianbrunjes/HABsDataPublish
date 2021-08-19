@@ -12,10 +12,6 @@ library(EML)
 library(taxonomyCleanr)
 library(EDIutils)
 
-# DEBUG mode will run script for only a limited set of the data, and skip publishing steps
-DEBUG <- "FALSE"
-
-print(Sys.getenv("TESTSECRET"))
 
 #'
 #' Read in spreadsheets that give info about event, measurement and occurrence parameters for this dataset from the downloaded file
@@ -33,6 +29,9 @@ options(warn = oldw)
 #'
 #' Read in HABs data from ERDDAP
 #'
+
+# DEBUG mode will run script on only a limited set of the data
+DEBUG <- "FALSE"
 
 if (DEBUG == "TRUE") {
   datasetIds = c('HABs-ScrippsPier')
@@ -157,15 +156,6 @@ for (i in 1:length(datasetIds)) {
     eventRemarks = SampleID,
     eventDate = time
   )
-  # write.csv(
-  #   event,
-  #   file = (here("DwC/site", datasetIds[i], paste(
-  #     siteIds[i], "SCCOOS_HABs_event.csv", sep = "_"
-  #   ))),
-  #   row.names = FALSE,
-  #   fileEncoding = "UTF-8",
-  #   quote = TRUE
-  # )
 
   mof <- siteData[(as.character(dwc_m))]
   mof_long <-
@@ -194,14 +184,6 @@ for (i in 1:length(datasetIds)) {
       }
     }
   }
-
-  # write.csv(
-  #   mof_long,
-  #   file = (here("DwC/site", datasetIds[i], paste(siteIds[i], "SCCOOS_HABs_mof.csv", sep = "_"))),
-  #   row.names = FALSE,
-  #   fileEncoding = "UTF-8",
-  #   quote = TRUE
-  # )
 
   occur <- siteData[(as.character(dwc_o))]
   occur_long <-
@@ -245,21 +227,13 @@ for (i in 1:length(datasetIds)) {
   }
 
   occur_long$scientificName <- as.vector(occur_long$scientificName)
-  # write.csv(
-  #   occur_long,
-  #   file = (here("DwC", "site", datasetIds[i], paste(
-  #     siteIds[i], "SCCOOS_HABs_occur.csv", sep = "_"
-  #   ))),
-  #   row.names = FALSE,
-  #   fileEncoding = "UTF-8",
-  #   quote = TRUE
-  # )
 
   #rowbind events, occurences and MoFs together to make a single event file
   oneEvent <- rbind(oneEvent, event)
   oneOccur <- rbind(oneOccur, occur_long)
   oneMoF <- rbind(oneMoF, mof_long )
 }
+
 write.csv(
   oneEvent,
   file = here("DwC", "datapackage", "event.csv"),
@@ -281,13 +255,6 @@ write.csv(
   fileEncoding = "UTF-8",
   quote = TRUE
 )
-# write.csv(
-#   dwc_o_records,
-#   here("DwC", "taxonomic_records.csv"),
-#   row.names = FALSE,
-#   fileEncoding = "UTF-8",
-#   quote = TRUE
-# )
 
 print("DwC transform completed.")
 
@@ -295,7 +262,6 @@ print("DwC transform completed.")
 eml_doc <- EML::read_eml(here("EML", "HABs_base_EML.xml"))
 
 ## Create updated list for creators/contacts
-
 creators <- list()
 contacts <- list()
 
@@ -340,7 +306,6 @@ for (i in 1:nrow(keyword_set)) {
 
 # Add keywordSet to eml
 eml_doc$dataset$keywordSet <- keywords
-
 
 ## Create updated geographic_coverage
 geo_coverage <- read_csv(here("EML", "geographic_coverage.csv"))
@@ -438,4 +403,6 @@ if (isValid) {
 } else {
   print("EML construction failed with errors:")
   print(isValid)
+
+  throw("EML construction did not produce a valid result.")
 }

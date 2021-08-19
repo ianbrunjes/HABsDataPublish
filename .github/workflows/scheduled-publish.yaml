@@ -4,6 +4,7 @@ on: workflow_dispatch
 
 jobs:
   generate-data:
+    environment: habspublish
     runs-on: ${{ matrix.config.os }}
 
     name: ${{ matrix.config.os }} (${{ matrix.config.r }})
@@ -48,6 +49,7 @@ jobs:
           install.packages('readr')
           install.packages('googledrive')
           install.packages('here')
+          install.packages("tibble")
           install.packages('readxl')
           install.packages('ncdf4')
           install.packages('rerddap')
@@ -74,8 +76,6 @@ jobs:
         shell: Rscript {0}
 
       - name: Generate DwC-A data package
-        env:
-          TESTSECRET: ${{secrets.TEST}}
         run: |
           source("R/build_DwC_package.R")
         shell: Rscript {0}
@@ -88,10 +88,13 @@ jobs:
           git diff --quiet && git diff --staged --quiet || git commit -am "added generated dataset files"
           git push
 
-      # - name: Publish data to EDI
-      #   run: |
-      #     source("R/job.R")
-      #   shell: Rscript {0}
+      - name: Publish data to EDI
+        env:
+            EDI_USER: ${{secrets.EDI_USERNAME}}
+            EDI_PASS: ${{secrets.EDI_PASSWORD}}
+        run: |
+          source("R/publish_to_EDI.R")
+        shell: Rscript {0}
 
       - name: Session info
         run: |
