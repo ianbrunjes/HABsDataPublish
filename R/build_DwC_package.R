@@ -325,7 +325,7 @@ gc <- list(
 eml_doc$dataset$coverage$geographicCoverage <- gc
 
 ## Update title/abstract
-package <- read_csv(here("EML", "package_info.csv"))
+package <- read_csv(here("EML", "general.csv"))
 eml_doc$dataset$title <- package$title[[1]]
 
 paragraphs = list()

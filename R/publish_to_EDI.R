@@ -5,6 +5,16 @@ library(readr)
 library(tibble)
 library(lubridate)
 
+## Get env vars
+if (Sys.getenv("EDI_ENV") %in% c("staging", "production")){
+  env <- Sys.getenv("EDI_ENV")
+} else {
+  throw("Invalid environment set for EDI_ENV.")
+}
+
+usern <- Sys.getenv("EDI_USER")
+passw <- Sys.getenv("EDI_PASS")
+
 ## Get path to generated EML for dataset
 eml_path <- here("DwC", "datapackage")
 
@@ -12,13 +22,14 @@ eml_path <- here("DwC", "datapackage")
 eml_doc <- read_eml(here(eml_path, "eml.xml"))
 
 # Get most recent version of published dataset
-versions <- read_csv(here("EML", "version_history_EDI.csv"), col_types = "cc")
-current_doi <- tail(versions, 1)[["doi"]]
-base_doi <- sub(".[^.]+$", "", current_doi)
-current_version <- sub('.*\\.', '', current_doi)
+identifiers <- read_csv(here("EML", "package_identifiers.csv"))
+dataset_id <- identifiers[[paste0("edi_", env)]]
+
+versions <- api_list_data_package_revisions("edi", dataset_id, environment="staging")
+current_version <- versions[length(versions)]
 new_version <- as.numeric(current_version) + 1
 
-new_doi <- paste0(base_doi, ".", new_version)
+new_doi <- paste0("edi.",dataset_id, ".", new_version)
 
 # Update EML with new DOI
 eml_doc$packageId <- new_doi
@@ -26,21 +37,7 @@ eml_doc$packageId <- new_doi
 # Rewrite updated EML file with EDI naming convention
 eml <- EML::write_eml(eml_doc, here("DwC", "datapackage", paste0(new_doi,".xml")))
 
-# Update version history (doi, publish_date)
-versions <- add_row(versions, doi = new_doi, publish_date = as.character(today()))
-write.csv(
-  versions,
-  file = here("EML", "version_history_EDI.csv"),
-  row.names = FALSE,
-  fileEncoding = "UTF-8",
-  quote = TRUE
-)
-
-
 ## Publish to EDI using EDIutils
-usern <- Sys.getenv("EDI_USER")
-passw <- Sys.getenv("EDI_PASS")
-
 tryCatch({
   EDIutils::api_update_data_package(
     path = eml_path,
