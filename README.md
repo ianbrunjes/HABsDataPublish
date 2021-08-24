@@ -32,6 +32,7 @@ The environment should contain the following secrets:
    - `EDI_USERNAME`: the username to authenticate to EDI for publishing with
    - `EDI_PASSWORD`: the password for the EDI account for publishing
    
+The csv *package_identifiers.csv* needs to contain the static package identifier granted by EDI (or elsewise) for the targeted environment.
    
 ### About
 
