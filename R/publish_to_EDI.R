@@ -26,6 +26,7 @@ eml_doc <- read_eml(here(eml_path, "eml.xml"))
 identifiers <- read_csv(here("EML", "package_identifiers.csv"))
 dataset_id <- identifiers[[paste0("edi_", env)]]
 
+# Get most recent version of published dataset
 current_version <- api_list_data_package_revisions(
   scope = "edi",
   identifier = dataset_id,
